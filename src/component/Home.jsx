@@ -101,7 +101,7 @@ function Home() {
         <section className="w-full min-h-screen py-5 bg-[#201E43]">
             <div className="container mx-auto">
                 <h1 className="text-[30px] flex justify-center pt-4 pb-7 font-bold text-[#508C9B]">Tasks</h1>
-                <div className="flex gap-7 pb-10 justify-center">
+                <div className="flex flex-col lg:flex-row items-center gap-7 pb-10 justify-center">
                     <input type="text" placeholder="Title"
                         className="bg-[#EEEEEE] p-1 rounded text-[#201E43] w-[250px] outline-none text-[20px]"
                         value={editTask ? editTask.title : task.title}
@@ -132,10 +132,10 @@ function Home() {
                     {
                         editTask ?
                             <>
-                                <button onClick={handleUpdate} className="bg-[#5cb85c] py-2 px-4 rounded text-[20px] font-semibold transition-all duration-400 hover:bg-[#47b347] hover:shadow-lg hover:shadow-[#47b347]">Save Changes</button>
-                                <button onClick={() => setEditTask(null)} className="bg-[#5cb85c] py-2 px-4 rounded text-[20px] font-semibold transition-all duration-400 hover:bg-[#47b347] hover:shadow-lg hover:shadow-[#47b347]">Cancel</button>
+                                <button onClick={handleUpdate} className="bg-[#5cb85c] py-2 px-4 rounded text-[20px] font-semibold transition-all duration-400 hover:bg-[#47b347] hover:shadow-lg hover:shadow-[#47b347] lg:w-fit w-[250px]">Save Changes</button>
+                                <button onClick={() => setEditTask(null)} className="bg-[#ca2f2f] py-2 px-4 rounded text-[20px] font-semibold transition-all duration-400 hover:bg-[#ba0e0e] hover:shadow-lg hover:shadow-[#ba0e0e] lg:w-fit w-[250px]">Cancel</button>
                             </> :
-                            <button onClick={handleAdd} className="bg-[#5cb85c] py-2 px-4 rounded text-[20px] font-semibold transition-all duration-400 hover:bg-[#47b347] hover:shadow-lg hover:shadow-[#47b347]">Add</button>
+                            <button onClick={handleAdd} className="bg-[#5cb85c] py-2 px-4 rounded text-[20px] font-semibold transition-all duration-400 hover:bg-[#47b347] hover:shadow-lg hover:shadow-[#47b347] lg:w-fit w-[250px]">Add</button>
                     }
                 </div>
                 {loading ? (<p>Loading tasks...</p>)
@@ -145,7 +145,7 @@ function Home() {
                             (
                                 <div className="">
                                     {showData.map((item) => (
-                                        <div key={item._id} className="bg-[#EEEEEE] mb-4 flex py-3 px-6 rounded justify-between items-center">
+                                        <div key={item._id} className="bg-[#EEEEEE] mb-4 flex flex-col lg:flex-row py-3 px-6 rounded justify-start lg:justify-between lg:items-center">
                                             <div>
                                                 <h3 className="text-[23px] text-[#201E43] font-bold">{item.title}</h3>
                                                 <p className="text-[20px] text-[#201E43]">{item.description}</p>

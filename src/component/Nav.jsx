@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom"
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { FcMenu } from "react-icons/fc";
+import { IoCloseSharp } from "react-icons/io5";
 
 function Nav() {
     const [userName, setUserName] = useState("");
+    const [openBar, setOpenBar] = useState(false)
     const API = 'https://task-back-end-blue.vercel.app/profile';
     const pages = [
         { id: 1, path: '/', name: 'Home' },
@@ -25,6 +28,7 @@ function Nav() {
                 }
             });
             setUserName(response.data.name);
+            console.log(response.data.name)
         } catch (error) {
             console.error("something wrong:", error);
         }
@@ -32,14 +36,31 @@ function Nav() {
 
     return (
         <nav className="w-full h-[50px] flex items-center justify-evenly bg-[#EEEEEE]">
-            <ul className="flex gap-3 ">
+            {userName && <span className="text-[#508C9B] text-[20px] font-bold">Hello {userName}</span>}
+            <ul className="hidden lg:flex gap-3 ">
                 {pages.map((page) =>
                     <li key={page.id} className="text-[#201E43] text-[20px] font-bold bg-[#EEEEEE] w-fit p-1 hover:bg-[#cdcccc] rounded-md transition-all">
                         <Link to={page.path} className="p-2 ">{page.name}</Link>
                     </li>
                 )}
             </ul>
-            {userName && <span className="text-[#508C9B] text-[20px] font-bold">Hello {userName}</span>}
+            <div className="lg:hidden" onClick={() => setOpenBar(!openBar)}>
+                {
+                    !openBar ?
+                        <FcMenu className="text-[#201E43] text-[30px] cursor-pointer" /> :
+                        <ul className="fixed right-0 top-0 bg-[#eeeeee] w-[300px] h-[100vh] transition-all duration-500">
+                            <IoCloseSharp className="text-[#201E43] text-[30px] cursor-pointer m-3" />
+                            {
+                                pages.map((page) =>
+                                    <li key={page.id} className="text-[#201E43] text-[20px] font-bold bg-[#EEEEEE] w-fit p-1 hover:bg-[#cdcccc] rounded-md transition-all flex flex-col mx-auto mt-7">
+                                        <Link to={page.path} className="p-2 ">{page.name}</Link>
+                                    </li>
+                                )
+                            }
+                        </ul>
+                }
+
+            </div>
         </nav>
     )
 }
