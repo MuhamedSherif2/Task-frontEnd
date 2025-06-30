@@ -138,8 +138,8 @@ function Home() {
                             <button onClick={handleAdd} className="bg-[#5cb85c] py-2 px-4 rounded text-[20px] font-semibold transition-all duration-400 hover:bg-[#47b347] hover:shadow-lg hover:shadow-[#47b347] lg:w-fit w-[250px]">Add</button>
                     }
                 </div>
-                {loading ? (<p>Loading tasks...</p>)
-                    : error ? (<p>Something Went Wrong</p>)
+                {loading ? (<p className="text-[#EEEEEE] text-[20px]">Loading tasks...</p>)
+                    : error ? (<p className="text-[#EEEEEE] text-[20px]">Something Went Wrong</p>)
                         : showData.length === 0 ?
                             (<p>No tasks available. Add your first task!</p>) :
                             (
