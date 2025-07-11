@@ -59,7 +59,7 @@ function Home() {
             if (error.response?.status === 403) {
                 alert('you are not an admin')
             } else {
-                alert('sdfasdfasdfasdf')
+                alert('Something went wrong')
             }
         }
     };
@@ -90,7 +90,11 @@ function Home() {
             setEditTask(null)
             setTask({ title: '', description: '', status: 'pending' })
         } catch (error) {
-            alert('Something went wrong')
+            if (error.response?.status === 403) {
+                alert('you are not an admin')
+            } else {
+                alert('Something went wrong')
+            }
         }
         // if (error.response?.status === 403) {
         //     alert('you are not an admin')
