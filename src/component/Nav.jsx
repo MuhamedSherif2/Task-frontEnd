@@ -20,7 +20,9 @@ function Nav() {
     const fetchUserName = async () => {
         try {
             const token = localStorage.getItem('token');
-            if (!token) return;
+            if (!token) {
+                return;
+            }
 
             const response = await axios.get(API, {
                 headers: {
@@ -28,15 +30,14 @@ function Nav() {
                 }
             });
             setUserName(response.data.name);
-            console.log(response.data.name)
         } catch (error) {
-            console.error("something wrong:", error);
+            console.log(error)
         }
     };
 
     return (
         <nav className="w-full h-[50px] flex items-center justify-evenly bg-[#EEEEEE]">
-            {userName && <span className="text-[#508C9B] text-[20px] font-bold">Hello {userName}</span>}
+            {userName ? <span className="text-[#508C9B] text-[20px] font-bold">Hello {userName}</span> : <span className="text-[#508C9B] text-[20px] font-bold">Please Login</span>}
             <ul className="hidden lg:flex gap-3 ">
                 {pages.map((page) =>
                     <li key={page.id} className="text-[#201E43] text-[20px] font-bold bg-[#EEEEEE] w-fit p-1 hover:bg-[#cdcccc] rounded-md transition-all">
