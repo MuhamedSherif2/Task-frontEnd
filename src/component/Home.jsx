@@ -141,7 +141,7 @@ function Home() {
                 {loading ? (<p className="text-[#EEEEEE] text-[20px]">Loading tasks...</p>)
                     : error ? (<p className="text-[#EEEEEE] text-[20px]">Something Went Wrong</p>)
                         : showData.length === 0 ?
-                            (<p>No tasks available. Add your first task!</p>) :
+                            (<p className="text-[23px] text-[#EEEEEE] font-bold">No tasks available. Add your first task!</p>) :
                             (
                                 <div className="">
                                     {showData.map((item) => (
